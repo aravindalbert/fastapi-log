@@ -1,61 +1,32 @@
-import os
-import pathlib
-import sys
-from shutil import rmtree
-
-from setuptools import Command, find_packages, setup
-
-__title__ = "fastapi_log"
-__description__ = "A FastAPI route for logging every request " 
-__url__ = "https://github.com/aravindalbert/fastapi-log.git"
-__author_email__ = ""
-__license__ = "MIT"
-__requires__ = ["fastapi","starlette","user_agents","pydantic" ]
-__keywords__ = ["fastapi","logging","custom","router"]
-__version__ = "0.0.1"
-__author__ = "Albert"
-
-here = pathlib.Path(__file__).parent
-about = {}
-
-# # Load the package's _version.py module as a dictionary.
-# with open(os.path.join(here, __title__, "_version.py")) as f:
-#     exec(f.read(), about)
-
-with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
-
-
-# __version__ = about["__version__"]
-
+from distutils.core import setup
 
 setup(
-    name=__title__,
-    version=__version__,
-    description=__description__,
-    long_description=long_description,
-    long_description_content_type='text/markdown',
-    url=__url__,
-    author=__author__, #about["__author__"],
-    author_email=__author_email__,
-    license=__license__,
-    packages=find_packages(exclude=("test",)),
-    keywords=__keywords__,
-    install_requires=__requires__,
-    zip_safe=False,
-    include_package_data=True,
+    name='fastapi_response_log',  # How you named your package folder (MyLib)
+    packages=['fastapi_response_log'],  # Chose the same as "name"
+    version='0.0.6',  # Start with a small number and increase it with every change you make
+    license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
+    description='A FastAPI route for logging every request',  # Give a short description about your library
+    author='Albert',  # Type in your name
+    author_email='',  # Type in your E-Mail
+    url='https://github.com/aravindalbert/fastapi-log.git',  # Provide either the link to your github or to your website
+    keywords=['fastaAPI', 'logging', 'response'],  # Keywords that define your package best
+    install_requires=['starlette==0.13.6',
+                      'user_agents==2.2.0',
+                      'pydantic==1.7.3',
+                      'fastapi==0.63.0',
+                      'secrets==1.0.2',
+                      'pyOpenSSL'
+                      ],
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Environment :: Console",
-        "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Topic :: Software Development :: Libraries",
+        'Development Status :: 3 - Alpha',
+        # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
+        'Intended Audience :: Developers',  # Define that your audience are developers
+        'Topic :: Software Development :: Build Tools',
+        'License :: OSI Approved :: MIT License',  # Again, pick a license
+        'Programming Language :: Python :: 3',  # Specify which pyhton versions that you want to support
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
-
 )

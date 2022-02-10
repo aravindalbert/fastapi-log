@@ -22,7 +22,6 @@ templates = Jinja2Templates(directory="templates")
 count = 0
 
 
-
 def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
     correct_username = secrets.compare_digest(credentials.username, "admin")
     correct_password = secrets.compare_digest(credentials.password, "12345")
@@ -34,22 +33,20 @@ def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
         )
     return credentials.username
 
+
 @router.get("/fastapi_dashboard")
-async def read_item(request: Request,credentials: HTTPBasicCredentials = Depends(get_current_username)):
-    
-   
+async def read_item(request: Request, credentials: HTTPBasicCredentials = Depends(get_current_username)):
     conn = sqlite3.connect('./data/test.db')
-    conn.row_factory = sqlite3.Row 
+    conn.row_factory = sqlite3.Row
     cursor = conn.execute("SELECT * FROM REQUEST").fetchall()
     len_cursor = len(cursor)
-    
-    data= json.dumps( [dict(ix) for ix in cursor] ) #CREATE JSON
 
-    
+    data = json.dumps([dict(ix) for ix in cursor])  # CREATE JSON
+
     conn.close()
     return templates.TemplateResponse("dashboard.html", {"request": request,
-                                                         "data":data,
-                                                         "count":len_cursor})
+                                                         "data": data,
+                                                         "count": len_cursor})
 
     # data = """
 

@@ -14,7 +14,7 @@ A FastAPI router for logging every request.
 # Installation
 
 ```buildoutcfg
-$ pip install fastapi_route_log
+$ pip install fastapi_log
 ```
 # Dashboard testing
 
@@ -27,7 +27,7 @@ check the url: http://localhost:8000/fastapi_dashboard
 # Code Sample
 
 ```python
-from fastapi_route_log.log_request import LoggingRoute
+from fastapi_response_log.log_request import LoggingRoute
 
 app = FastAPI()
 app.router.route_class = LoggingRoute
