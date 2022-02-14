@@ -13,7 +13,7 @@ from datetime import datetime
 from fastapi.routing import APIRoute
 import sqlite3
 
-conn = sqlite3.connect('fastapi_response_log/data/test.db')
+conn = sqlite3.connect('test.db')
 
 conn.execute('''CREATE TABLE IF NOT EXISTS REQUEST
          (ENDPOINT        TEXT    NOT NULL,
@@ -88,7 +88,7 @@ class LoggingRoute(APIRoute):
                 process_time = (time.time() - start_time) * 1000
                 formatted_process_time = '{0:.2f}'.format(process_time)
                 response_json = {
-                    "type": "metrics",
+                    "type": "response",
                     "uuid": uuid_str,
                     "env": os.environ.get("ENV"),
                     "region": os.environ.get("REGION"),
@@ -117,9 +117,9 @@ class LoggingRoute(APIRoute):
                     "ts": f'{datetime.now():%Y-%m-%d %H:%M:%S%z}'
                 }
                 if "health" not in request.url.path:
-                    print(json.dumps(request_json, indent=4))
-                    print(json.dumps(response_json, indent=4))
-                    print(json.dumps(metrics_json, indent=4))
+                    print(json.dumps(request_json))
+                    print(json.dumps(response_json))
+                    print(json.dumps(metrics_json))
                 try:
                     if len(request_json) != 0:
                         url = str(request_json["url"]).replace("/", "")

@@ -3,19 +3,17 @@ from distutils.core import setup
 setup(
     name='fastapi_response_log',  # How you named your package folder (MyLib)
     packages=['fastapi_response_log'],  # Chose the same as "name"
-    version='0.0.6',  # Start with a small number and increase it with every change you make
+    version='0.1.0',  # Start with a small number and increase it with every change you make
     license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='A FastAPI route for logging every request',  # Give a short description about your library
     author='Albert',  # Type in your name
     author_email='',  # Type in your E-Mail
     url='https://github.com/aravindalbert/fastapi-log.git',  # Provide either the link to your github or to your website
     keywords=['fastaAPI', 'logging', 'response'],  # Keywords that define your package best
-    install_requires=['starlette==0.13.6',
-                      'user_agents==2.2.0',
-                      'pydantic==1.7.3',
-                      'fastapi==0.63.0',
-                      'secrets==1.0.2',
-                      'pyOpenSSL'
+    install_requires=['starlette',
+                      'user_agents',
+                      'pydantic',
+                      'fastapi',
                       ],
     classifiers=[
         'Development Status :: 3 - Alpha',
