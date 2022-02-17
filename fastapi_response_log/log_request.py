@@ -136,8 +136,12 @@ class LoggingRoute(APIRoute):
                 return response
             except Exception as exc:
                 body = await request.body()
-                detail = {"errors": str(exc), "body": body.decode("utf-8")}
-                print(detail)
-                raise HTTPException(status_code=422, detail=detail)
+                # If HTTPException raise that again else raise a 422 exception
+                if exc.__class__.__name__ is 'HTTPException':
+                    raise exc
+                else:
+                    detail = {"errors": str(exc), "body": body.decode("utf-8")}
+                    print(detail)
+                    raise HTTPException(status_code=422, detail=detail)
 
         return custom_route_handler
