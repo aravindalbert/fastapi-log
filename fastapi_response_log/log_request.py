@@ -13,13 +13,13 @@ from datetime import datetime
 from fastapi.routing import APIRoute
 import sqlite3
 
-conn = sqlite3.connect('../data/test.db')
-
-conn.execute('''CREATE TABLE IF NOT EXISTS REQUEST
-         (ENDPOINT        TEXT    NOT NULL,
-         TYPE            INT     NOT NULL,
-         BODY            CHAR(50),
-         UUID            REAL);''')
+# conn = sqlite3.connect('data/test.db')
+#
+# conn.execute('''CREATE TABLE IF NOT EXISTS REQUEST
+#          (ENDPOINT        TEXT    NOT NULL,
+#          TYPE            INT     NOT NULL,
+#          BODY            CHAR(50),
+#          UUID            REAL);''')
 
 
 class LoggingRoute(APIRoute):
@@ -127,9 +127,9 @@ class LoggingRoute(APIRoute):
                         body = str(request_json["body"])
                         uuid_str = request_json["uuid"]
                         # print(body)
-                        conn.execute(f"INSERT INTO REQUEST VALUES (?,?,?,?)", (url, method, body, uuid_str))
+                        # conn.execute(f"INSERT INTO REQUEST VALUES (?,?,?,?)", (url, method, body, uuid_str))
                         # VALUES ({request_json["url"].replace("/","")}, {request_json["method"]},"str(request_json[body])", {request_json["uuid"]} )""");
-                    conn.commit()
+                    # conn.commit()
                 except Exception as exc:
                     print(exc)
                     pass
